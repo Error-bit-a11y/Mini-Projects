@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+
+        margin-top: 200px;
+    }
+
+    .cont {
+        margin-top: 65px;
+        display: flex;
+        gap: 34px;
+
+        align-items: center;
+        flex-direction: column;
+
+    }
+
+    .container {
+        width: 10vw;
+        height: 40vh;
+        border: 2px solid black;
+
+
+    }
+
+    #red {
+        height: 20px;
+        width: 20px;
+        border: 2px solid black;
+        border-radius: 10px;
+
+    }
+
+    #yellow {
+        height: 20px;
+        width: 20px;
+        border: 2px solid black;
+        border-radius: 10px;
+
+    }
+
+    #green {
+        height: 20px;
+        width: 20px;
+        border: 2px solid black;
+        border-radius: 10px;
+
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="cont">
+            <div id="red"></div>
+            <div id="yellow"></div>
+            <div id="green"></div>
+        </div>
+    </div>
+
+    <script>
+
+        //Code by ME
+        /*let red = document.getElementById("red")
+        let yellow = document.getElementById("yellow")
+        let green = document.getElementById("green")
+
+        let changeColor;
+
+        changeColor = setInterval(function () {
+            if (red.style.backgroundColor == "red") {
+                red.style.backgroundColor = "";
+            } else {
+                red.style.backgroundColor = "red";
+            }
+        }, 4000)
+        changeColor = setInterval(function () {
+            if (green.style.backgroundColor == "green") {
+                green.style.backgroundColor = "";
+            } else {
+                green.style.backgroundColor = "green";
+            }
+        }, 12000)
+        changeColor = setInterval(function () {
+            if (yellow.style.backgroundColor == "yellow") {
+                yellow.style.backgroundColor = "";
+            } else {
+                yellow.style.backgroundColor = "yellow";
+            }
+        }, 10000)*/
+
+
+        //Callback Hell Approch
+
+        // function clearLights() {
+        //     red.style.backgroundColor = "";
+        //     yellow.style.backgroundColor = "";
+        //     green.style.backgroundColor = "";
+        // }
+
+        // function runLightCallbacks() {
+        //     clearLights();
+        //     red.style.backgroundColor = "red";
+
+        //     setTimeout(() => {
+        //         clearLights();
+        //         yellow.style.backgroundColor = "yellow";
+
+        //         setTimeout(() => {
+        //             clearLights();
+        //             green.style.backgroundColor = "green";
+
+        //             setTimeout(() => {
+        //                 runLightCallbacks(); // Recursively call to repeat the cycle
+        //             }, 2000); // Wait 2s on green
+
+        //         }, 3000); // Wait 1s on Yellow
+
+        //     }, 4000); // Wait 3s on red
+        // }
+
+        // runLightCallbacks();
+
+
+
+        //promise wrapper
+
+        let red = document.getElementById("red");
+        let yellow = document.getElementById("yellow");
+        let green = document.getElementById("green");
+
+        // Helper to reset all colors
+        function clearLights() {
+            red.style.backgroundColor = "";
+            yellow.style.backgroundColor = "";
+            green.style.backgroundColor = "";
+        }
+
+        // The Promise Wrapper
+        function delay(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        // The Modern Async/Await Sequence
+        async function runTrafficLight() {
+            while (true) {
+                clearLights();
+                red.style.backgroundColor = "red";
+                await delay(3000); // Pauses here for 3s
+
+                clearLights();
+                yellow.style.backgroundColor = "yellow";
+                await delay(2000); // Pauses here for 1s
+
+                clearLights();
+                green.style.backgroundColor = "green";
+                await delay(4000); // Pauses here for 2s
+            }
+        }
+
+        // Start the infinite loop
+        runTrafficLight();
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+
+</style>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>TV Shows List</title>
+</head>
+
+<body>
+
+    <input type="text" id="genre-input" placeholder="search genre">
+    <button id="btn">Show 100 Shows</button>
+
+    <!-- Placed below controls so the button stays visible -->
+    <div id="shows"></div>
+
+    <script>
+       const displayArea = document.getElementById("shows");
+    const button = document.getElementById("btn");
+    // 1. Get the input element
+    const genreInput = document.getElementById("genre-input"); 
+
+    button.addEventListener("click", async function () {
+        displayArea.innerHTML = "<p>Loading shows...</p>";
+
+        try {
+            let response = await fetch("https://api.tvmaze.com/shows");
+            let allShows = await response.json();
+
+            let exactly100Shows = allShows.slice(0, 100);
+            let finalHTML = "";
+            // 2. Safely get the search value in lowercase
+            let searchGenre = genreInput.value.toLowerCase(); 
+            
+            let displayCount = 1; // Used to number the list cleanly
+
+            for (let i = 0; i < exactly100Shows.length; i++) {
+                let show = exactly100Shows[i];
+                let name = show.name;
+                let rating = show.rating.average || "N/A";
+                
+                // The API returns genres as an array: ["Drama", "Action"]
+                // We join them into a single string to easily search through them
+                let genresString = show.genres.join(" ").toLowerCase();
+
+                // 3. Check if the show's genres include the search term
+                if (genresString.includes(searchGenre)) {
+                    // 4. Move the HTML building INSIDE the if-statement
+                    finalHTML += "<p>" + displayCount + ". <strong>" + name + "</strong> - Rating: " + rating + " <em>(" + show.genres.join(", ") + ")</em></p>";
+                    displayCount++; // Increase count only when a show is added
+                }
+            }
+
+            // Handle the case where no shows match the search
+            if (finalHTML === "") {
+                finalHTML = "<p>No shows found for that genre in the top 100.</p>";
+            }
+
+            displayArea.innerHTML = finalHTML;
+
+        } catch (error) {
+            displayArea.innerHTML = "<p style='color: red;'>Failed to load shows. Check your internet connection.</p>";
+            console.error("Error details:", error);
+        }
+    });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let random = Math.floor(Math.random() * 100) + 1
+        // console.log(random)
+
+        let count = 0;
+        while (count < 5) {
+            // let a = prompt("Enter Number");
+            let a = Number(prompt("Enter Number"));
+            count++;
+            if (a == random) {
+                alert("Correct Number !!!")
+                break;
+            }
+            else if (a > random) {
+                confirm("greater than random")
+            }
+
+            else if (a < random) {
+                confirm("lower than random")
+            }
+        }
+        if (count ==5){
+            alert("you are done");
+        }
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <div class="jokes">
+        <span>Do not be racist; be like Mario. He's an Italian plumber, who was made by the Japanese, speaks English,
+            looks like a Mexican, jumps like a black man, and grabs coins like a Jew!</span>
+        <span> Do you know who was the first black guy to admit he is the father? A: Darth Vader.</span>
+        <span> Why did Adele cross the road? A: To sing, "Hello from the other side!"</span>
+
+    </div>
+    <script>
+        async function getjokes() {
+            let a = await fetch("https://v2.jokeapi.dev/joke/Any")
+            let response = await a.json();
+            console.log(response);
+
+
+            document.querySelector(".jokes").textContent =
+                response.setup + " " + response.delivery;
+
+            // let joke=[];
+            // for (let index = 0; index < array.length; index++) {
+            //     const element = array[index];
+
+            // }
+
+        }
+        getjokes();
+
+        // let span = document.querySelectorAll(".jokes span")
+        // let joke = [];
+
+        // for (let index = 0; index < span.length; index++) {
+        //     joke.push(span[index].textContent.trim());
+
+        // }
+
+        // let rand = Math.random();
+        // if (rand < 0.33) {
+        //     console.log(`${joke[2]}`)
+
+        // }
+        // else if (rand > 0.33 && rand < 0.66) {
+        //     console.log(`${joke[0]}`)
+        // }
+        // else {
+        //     console.log(`${joke[1]}`)
+        // }
+
+
+
+        // better way to do it
+
+        // let spans = document.querySelectorAll(".jokes span");
+        // let jokes = [];
+
+        // for (let index = 0; index < spans.length; index++) {
+        //     jokes.push(spans[index].textContent.trim());
+        // }
+
+        // let randomIndex = Math.floor(Math.random() * jokes.length);
+
+        // console.log(jokes[randomIndex]);
+
+
+
+    </script>
+</body>
+
+</html>

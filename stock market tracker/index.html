@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <input type="number" id="buy-price" placeholder="Enter NIFTY Buy Price">
+    <button id="calc-btn">Calculate Profit/Loss</button>
+    <h2 id="result-display">Result will show here</h2>
+
+
+    <script>
+       const buyInput = document.getElementById("buy-price");
+const calcBtn = document.getElementById("calc-btn");
+const display = document.getElementById("result-display");
+
+calcBtn.addEventListener("click", async function () {
+    display.innerText = "Fetching live test data...";
+
+    try {
+        // 1. Fetch from a universally unblocked testing API
+        let response = await fetch("https://dummyjson.com/products/1");
+
+        // 2. Parse the JSON
+        let marketData = await response.json();
+
+        // 3. Extract the simple price number (e.g., 9.99)
+        let currentPrice = marketData.price;
+
+        let buyPrice = Number(buyInput.value);
+        let profitOrLoss = currentPrice - buyPrice;
+
+        display.innerText = "Your Profit/Loss is: $" + profitOrLoss.toFixed(2);
+
+    } catch (error) {
+        display.innerText = "Error fetching live data. Please try again later.";
+        console.error(error);
+    }
+});
+    </script>
+</body>
+
+</html>

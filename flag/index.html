@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <img id="srcc" src="https://flagcdn.com/w320/in.png" width="200">
+    <input id="input" placeholder="Enter country name">
+
+
+    <button id="btnn">change flag</button>
+
+
+
+
+    <script>
+        
+        async function flags() {
+
+            let flag = await fetch("https://flagcdn.com/en/codes.json")
+            let response = await flag.json();
+            // console.log(response);
+
+            let btn = document.getElementById("btnn")
+            let change = document.getElementById("srcc")
+            let codes = Object.keys(response);
+            // console.log(codes)
+
+
+            btn.addEventListener("click", function () {
+
+                let searchName = input.value.toLowerCase();
+
+                for (let code in response) {
+
+                    if (response[code].toLowerCase().includes(searchName)) {
+
+                    change.src = `https://flagcdn.com/w320/${code}.png`;
+
+                        break;
+                    }
+                }
+            });
+        }
+
+
+
+        flags()
+
+
+
+    </script>
+</body>
+
+</html>

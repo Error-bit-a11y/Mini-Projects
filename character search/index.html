@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input id="wordy" type="text" maxlength="10" placeholder="enter text">
+    <div id="limit"></div>
+
+    <script>
+        let word = document.getElementById("wordy")
+        let typed = document.getElementById("limit")
+
+        word.addEventListener("input", function () {
+            let currentText = word.value;
+            
+            let count = currentText.length;
+
+            typed.innerText=count;
+            if(count>=10){
+                typed.innerHTML="limit reached"
+                typed.style.backgroundColor="red"
+                return;
+            }
+            else {
+            typed.innerHTML = count;
+            typed.style.backgroundColor = "transparent";
+            typed.style.color = "black";
+        }
+            
+
+        })
+
+    </script>
+</body>
+
+</html>

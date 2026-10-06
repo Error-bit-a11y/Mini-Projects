@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RGPV html file</title>
+</head>
+<style>
+   body {
+    background-color: black;
+    color: green;
+    font-family: monospace;
+}
+</style>
+
+<body>
+    
+<script>
+    let messages=[
+    "Initializing Hacking",
+    "Reading Your Files",
+    "Passwords Files Detected",
+    "Sending all Passwords And Files to the Server",
+    "Cleaning Up"
+];
+
+function wait(ms){
+    return new Promise(resolve=>setTimeout(resolve,ms))
+}
+
+async function showMessages(){
+    for(let message of messages){
+        let p =document.createElement("p")
+        document.body.appendChild(p);
+
+          p.innerText = message + ".";
+        await wait(800);
+
+        p.innerText = message + "..";
+        await wait(900);
+
+        p.innerText = message + "...";
+        await wait(1000);
+    }
+
+}
+showMessages();
+</script>
+    
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <input type="text" id="time" placeholder="enter number">
+    <button onclick=" alarmClock()">Start</button>
+    <button id="stop">stop</button>
+    <h2 id="display"></h2>
+    <script>
+        function alarmClock() {
+            let timer = Number(document.getElementById("time").value);
+            let audio = new Audio("song.mp3")
+            let Alarm = setInterval(function () {
+                document.getElementById("display").textContent = timer;
+               
+                timer--;
+
+                if (timer < 0) {
+                    clearInterval(Alarm);
+                    audio.play();
+
+                }
+                document.querySelector("#stop").addEventListener("click",e=>{
+                    audio.pause();
+
+                })
+
+            }, 1000);
+
+        }        
+    </script>
+</body>
+
+</html>

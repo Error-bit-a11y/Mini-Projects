@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        background-color: black;
+        display: flex;
+        justify-content: center;
+        margin-top: 132px;
+    }
+
+    .container {
+        height: 50vh;
+        width: 50vw;
+        border: 2px solid rgb(76, 163, 234);
+        display: flex;
+
+
+    }
+</style>
+
+<body>
+    <div class="container">
+
+
+    </div>
+
+
+    <script>
+
+        let box = document.querySelector(".container");
+        function clock() {
+            let date = new Date();
+            let hours = date.getHours();
+            let minutes = date.getMinutes();
+            let seconds = date.getSeconds();
+            box.innerHTML = `${hours}:${minutes}:${seconds}`
+        }
+        clock();
+
+        setInterval(clock, 1000)
+
+        box.style.color = "red"
+       box.style.fontSize = "clamp(40px, 10vw, 120px)";
+        box.style.display = "flex";
+        box.style.justifyContent = "center";
+        box.style.alignItems = "center";
+        
+
+    </script>
+</body>
+
+</html>

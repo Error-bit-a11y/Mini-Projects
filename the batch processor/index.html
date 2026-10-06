@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1. The Setup (Data and Fake API)
+        const userIds = [101, 102, 103, 104, 105];
+
+        function fetchUserData(id) {
+            return new Promise(resolve => {
+                let randomTime = Math.floor(Math.random() * 1000) + 500;
+                setTimeout(() => {
+                    resolve(`Data for User ${id}`);
+                }, randomTime);
+            });
+        }
+
+        // 2. The Solution (Sequential Loop)
+        async function processSequentially() {
+            console.log("Starting sequential fetch...");
+            console.time("Total Time"); // Start stopwatch
+
+            // The for...of loop is perfect for async iteration
+            for (let id of userIds) {
+
+                console.log(`Fetching user ${id}...`);
+
+                // The 'await' keyword completely pauses the loop here.
+                // It will not move to the next ID until this one finishes.
+                let data = await fetchUserData(id);
+
+                console.log("✅", data);
+            }
+
+            console.timeEnd("Total Time"); // Stop stopwatch
+        }
+
+        // Run it!
+        processSequentially();
+    </script>
+</body>
+
+</html>
